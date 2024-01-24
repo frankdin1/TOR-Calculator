@@ -23,32 +23,36 @@ const operators = document.querySelectorAll('#operators');
 const bigDisplay = document.querySelector('#perm-display');
 const firstNumber = document.querySelector('#first-number');
 const secondNumber = document.querySelector('#second-number');
+const operator = document.querySelector('#operator');
 let number = [];
 
 function displayOperator() {
-    let operator = '';
+
     for (let i = 0; i < operators.length; i++) {
         operators[i].addEventListener('click', function (e) {
-            if (bigDisplay.innerText != "") {
-                bigDisplay.innerText += e.srcElement.innerText;
-                operator = e.srcElement.innerText;
+            if (firstNumber.innerText != "") {
+                operator.innerText = "";
+                operator.innerText = e.srcElement.innerText;
+                console.log(operator.innerText);
             }
         })
     }
-    return operator;
 }
 
 function displayNumber() {
 
     for (let i = 0; i < numbers.length; i++) {
         numbers[i].addEventListener('click', function (e) {
-            bigDisplay.innerText += e.srcElement.innerText;
-            number.unshift(parseInt(e.srcElement.innerText));
-            console.log(number[0]);
-            operation
+            if (!operator.innerText) {
+                firstNumber.innerText += e.srcElement.innerText;
+                console.log(firstNumber.innerText);
+            } else {
+                secondNumber.innerText += e.srcElement.innerText;
+                console.log(secondNumber.innerText)
+            }
+            console.log(operator.innerText)
         })
     }
-    //return number[0];
 }
 
 function operation(operator, firstNum, secondNum) {
