@@ -19,3 +19,22 @@
     border: 1px solid black;
     margin: 0 auto;
 }
+
+#buttons {
+    display: flex;
+    width: 480px;
+    height: 320px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-left: 10px;
+    justify-content: space-around;
+}
+
+#numbers,
+#operators {
+    display: flex;
+    flex-wrap: wrap;
+    width: 240px;
+    height: 320px;
+    border: 1px solid black;
+}
