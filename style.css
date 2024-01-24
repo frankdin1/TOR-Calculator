@@ -3,7 +3,7 @@
 }
 
 #calc-body {
-    width: 500px;
+    width: 400px;
     height: 500px;
     border: 2px black solid;
     margin: 0 auto;
@@ -20,7 +20,7 @@
 }
 
 #temp-display {
-    width: 480px;
+    width: var(--inner-width);
     height: 50px;
     border: 1px solid black;
     margin: 0 auto;
@@ -28,11 +28,11 @@
 
 #buttons {
     display: flex;
-    width: 480px;
+    width: var(--inner-width);
     height: 320px;
     border: 1px solid black;
+    margin: 0 auto;
     margin-top: 10px;
-    margin-left: 10px;
     justify-content: space-around;
 }
 
@@ -40,7 +40,15 @@
 #operators {
     display: flex;
     flex-wrap: wrap;
-    width: 240px;
+    width: 50%;
     height: 320px;
     border: 1px solid black;
+}
+
+.num-buttons {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 50%;
 }
