@@ -18,10 +18,21 @@ Extra credit
 */
 
 const buttons = document.querySelectorAll('#buttons');
+const numbers = document.querySelectorAll('#numbers');
+const operators = document.querySelectorAll('#operators');
 const bigDisplay = document.querySelector('#perm-display');
 
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function (e) {
+console.log("bigDisplay.innerText: ", bigDisplay.innerText);
+for (let i = 0; i < operators.length; i++) {
+    operators[i].addEventListener('click', function (e) {
+        if (bigDisplay.innerText != "") {
+            bigDisplay.innerText += e.srcElement.innerText;
+        }
+    })
+}
+
+for (let i = 0; i < numbers.length; i++) {
+    numbers[i].addEventListener('click', function (e) {
         bigDisplay.innerText += e.srcElement.innerText;
     })
 }
