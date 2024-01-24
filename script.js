@@ -22,17 +22,42 @@ const numbers = document.querySelectorAll('#numbers');
 const operators = document.querySelectorAll('#operators');
 const bigDisplay = document.querySelector('#perm-display');
 
-console.log("bigDisplay.innerText: ", bigDisplay.innerText);
-for (let i = 0; i < operators.length; i++) {
-    operators[i].addEventListener('click', function (e) {
-        if (bigDisplay.innerText != "") {
-            bigDisplay.innerText += e.srcElement.innerText;
-        }
-    })
+function displayOperator() {
+    for (let i = 0; i < operators.length; i++) {
+        operators[i].addEventListener('click', function (e) {
+            if (bigDisplay.innerText != "") {
+                bigDisplay.innerText += e.srcElement.innerText;
+            }
+        })
+    }
 }
 
-for (let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener('click', function (e) {
-        bigDisplay.innerText += e.srcElement.innerText;
-    })
+function displayNumber() {
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener('click', function (e) {
+            bigDisplay.innerText += e.srcElement.innerText;
+        })
+    }
 }
+
+function operation(operator, firstNum, secondNum) {
+    const result = 0;
+    if (operator == '+') {
+        result = firstNum + secondNum;
+    } else if (operator == '*') {
+        result = firstNum * secondNum;
+    } else if (operator == '/') {
+        result = firstNum / secondNum;
+    } else if (operator == '-') {
+        result = firstNum - secondNum;
+    }
+    return result;
+}
+
+function calculator() {
+    displayNumber();
+    displayOperator();
+    operation();
+}
+
+calculator();
