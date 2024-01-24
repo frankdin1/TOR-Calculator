@@ -22,6 +22,6 @@ const bigDisplay = document.querySelector('#perm-display');
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function (e) {
-        bigDisplay.innerText = e.srcElement.innerText;
+        bigDisplay.innerText += e.srcElement.innerText;
     })
 }
