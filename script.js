@@ -17,3 +17,11 @@ Extra credit
 -add keyboard support in case you get trouble from keys such as '/'. read documentation for 'event.preventDefault' tosolve this problem.
 */
 
+const buttons = document.querySelectorAll('#buttons');
+const bigDisplay = document.querySelector('#perm-display');
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function (e) {
+        bigDisplay.innerText = e.srcElement.innerText;
+    })
+}
