@@ -21,23 +21,32 @@ const buttons = document.querySelectorAll('#buttons');
 const numbers = document.querySelectorAll('#numbers');
 const operators = document.querySelectorAll('#operators');
 const bigDisplay = document.querySelector('#perm-display');
+let number = [];
 
 function displayOperator() {
+    let operator = '';
     for (let i = 0; i < operators.length; i++) {
         operators[i].addEventListener('click', function (e) {
             if (bigDisplay.innerText != "") {
                 bigDisplay.innerText += e.srcElement.innerText;
+                operator = e.srcElement.innerText;
             }
         })
     }
+    return operator;
 }
 
 function displayNumber() {
+
     for (let i = 0; i < numbers.length; i++) {
         numbers[i].addEventListener('click', function (e) {
             bigDisplay.innerText += e.srcElement.innerText;
+            number.unshift(parseInt(e.srcElement.innerText));
+            console.log(number[0]);
+            operation
         })
     }
+    //return number[0];
 }
 
 function operation(operator, firstNum, secondNum) {
@@ -55,9 +64,11 @@ function operation(operator, firstNum, secondNum) {
 }
 
 function calculator() {
-    displayNumber();
     displayOperator();
+    displayNumber();
     operation();
 }
 
 calculator();
+// console.log(displayOperator());
+// console.log(displayNumber());
