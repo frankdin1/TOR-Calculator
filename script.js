@@ -21,6 +21,8 @@ const buttons = document.querySelectorAll('#buttons');
 const numbers = document.querySelectorAll('#numbers');
 const operators = document.querySelectorAll('#operators');
 const bigDisplay = document.querySelector('#perm-display');
+const firstNumber = document.querySelector('#first-number');
+const secondNumber = document.querySelector('#second-number');
 let number = [];
 
 function displayOperator() {
@@ -66,7 +68,7 @@ function operation(operator, firstNum, secondNum) {
 function calculator() {
     displayOperator();
     displayNumber();
-    operation();
+    operation(firstNumber, secondNumber);
 }
 
 calculator();
