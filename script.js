@@ -24,7 +24,7 @@ const bigDisplay = document.querySelector('#perm-display');
 const firstNumber = document.querySelector('#first-number');
 const secondNumber = document.querySelector('#second-number');
 const operator = document.querySelector('#operator');
-let number = [];
+let tempDisplay = document.querySelector('#temp-display');
 
 function displayOperator() {
 
@@ -33,7 +33,6 @@ function displayOperator() {
             if (firstNumber.innerText != "") {
                 operator.innerText = "";
                 operator.innerText = e.srcElement.innerText;
-                console.log(operator.innerText);
             }
         })
     }
@@ -45,18 +44,16 @@ function displayNumber() {
         numbers[i].addEventListener('click', function (e) {
             if (!operator.innerText) {
                 firstNumber.innerText += e.srcElement.innerText;
-                console.log(firstNumber.innerText);
             } else {
                 secondNumber.innerText += e.srcElement.innerText;
-                console.log(secondNumber.innerText)
+                tempDisplay.innerText = operation(operator.innerText, parseInt(firstNumber.innerText), parseInt(secondNumber.innerText));
             }
-            console.log(operator.innerText)
         })
     }
 }
 
 function operation(operator, firstNum, secondNum) {
-    const result = 0;
+    let result = 0;
     if (operator == '+') {
         result = firstNum + secondNum;
     } else if (operator == '*') {
