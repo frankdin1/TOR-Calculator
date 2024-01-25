@@ -15,7 +15,7 @@ const answer = document.querySelector('#answer');
 function displayOperator() {
     operators[0].addEventListener('click', function (e) {
         if (firstNumber.innerText != "") {
-            if (e.srcElement.innerText != '=') {
+            if (e.srcElement.innerText != '=' && e.srcElement.innerText != 'D') {
                 operator.innerText = "";
                 operator.innerText = e.srcElement.innerText;
             }
@@ -52,12 +52,32 @@ function displayNumber() {
 function nonDisplayOperators() {
     operators[0].addEventListener('click', function (e) {
         if (e.srcElement.innerText == 'C') {
-            firstNumber.innerText = "";
-            secondNumber.innerText = "";
-            operator.innerText = "";
-            tempDisplay.innerText = "";
+            clearScreen();
+        }
+        if (e.srcElement.innerText == 'D') {
+            backspace();
         }
     })
+}
+
+function clearScreen() {
+    firstNumber.innerText = "";
+    secondNumber.innerText = "";
+    operator.innerText = "";
+    tempDisplay.innerText = "";
+}
+
+function backspace() {
+    if (bigDisplay.lastElementChild.innerText) {
+        bigDisplay.lastElementChild.innerText = "";
+    }
+    else if (bigDisplay.firstElementChild.innerText && operator.innerText) {
+        operator.innerText = "";
+    }
+    else {
+        bigDisplay.firstElementChild.innerText = "";
+    }
+
 }
 
 function operation(operator, firstNum, secondNum) {
