@@ -7,6 +7,7 @@ const firstNumber = document.querySelector('#first-number');
 const secondNumber = document.querySelector('#second-number');
 const operator = document.querySelector('#operator');
 let tempDisplay = document.querySelector('#temp-display');
+const answer = document.querySelector('#answer');
 
 //I could dynamically create a span element every time a button is clicked.
 //That way, I could get the program to chain as many operations as possible
@@ -40,42 +41,44 @@ function displayOperator() {
 //     }
 // }
 
-function displayNumber() {
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i].addEventListener('click', function (e) {
-            if (firstNumber.innerText) {
-                secondNumber.innerText = e.srcElement.innerText;
-            } else {
-                firstNumber.innerText = e.srcElement.innerText;
-            }
-        })
-    }
-}
-
-function displayTempResult() {
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i].addEventListener('click', function () {
-            if (bigDisplay.children.length > 2) {
-                tempDisplay.innerText = operation(bigDisplay.children[1].innerText, parseFloat(bigDisplay.children[0].innerText), parseFloat(bigDisplay.children[2].innerText))
-            }
-        })
-    }
-}
 // function displayNumber() {
-
 //     for (let i = 0; i < numbers.length; i++) {
 //         numbers[i].addEventListener('click', function (e) {
-//             if (!operator.innerText) {
-//                 firstNumber.innerText += e.srcElement.innerText;
-//             } else {
+//             if (operator.innerText) {
 //                 secondNumber.innerText += e.srcElement.innerText;
-//                 if (operator.innerText == '+' || operator.innerText == '-' || operator.innerText == 'X' || operator.innerText == '/') {
-//                     tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
-//                 }
+//                 tempDisplay.innerText = operation(operator, parseFloat(firstNumber
+//                     .innerText), parseFloat(secondNumber.innerText));
+//             } else {
+//                 firstNumber.innerText += e.srcElement.innerText;
 //             }
 //         })
 //     }
 // }
+
+function displayPermResult() {
+    answer.addEventListener('click', function () {
+        firstNumber.innerText = tempDisplay.innerText;
+        operator.innerText = "";
+        secondNumber.innerText = "";
+        console.log('answer button was clicked.')
+    })
+}
+
+function displayNumber() {
+
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener('click', function (e) {
+            if (!operator.innerText) {
+                firstNumber.innerText += e.srcElement.innerText;
+            } else {
+                secondNumber.innerText += e.srcElement.innerText;
+                if (operator.innerText == '+' || operator.innerText == '-' || operator.innerText == 'X' || operator.innerText == '/') {
+                    tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
+                }
+            }
+        })
+    }
+}
 
 function operation(operator, firstNum, secondNum) {
     let result = 0;
@@ -94,7 +97,7 @@ function operation(operator, firstNum, secondNum) {
 function calculator() {
     displayOperator();
     displayNumber();
-    displayTempResult();
+    displayPermResult();
 }
 
 calculator();
