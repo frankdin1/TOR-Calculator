@@ -48,7 +48,6 @@ function displayOperator() {
                 const operator = document.createElement('span');
                 operator.id = 'operator';
                 operator.innerText = e.srcElement.innerText;
-                console.log(bigDisplay.lastChild)
                 if (bigDisplay.lastChild.id != 'number') {
                     bigDisplay.removeChild(bigDisplay.lastChild);
                 }
@@ -68,6 +67,20 @@ function displayNumber() {
             bigDisplay.appendChild(number);
         })
     }
+}
+
+function displayTempResult() {
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener('click', function () {
+            if (bigDisplay.children.length > 2) {
+                tempDisplay.innerText = operation(bigDisplay.children[1].innerText, parseFloat(bigDisplay.children[0].innerText), parseFloat(bigDisplay.children[2].innerText))
+            }
+        })
+    }
+    // if (bigDisplay.lastChild.id === 'number') {
+    //     tempDisplay.innerText = operation(bigDisplay.children[1], parseFloat(bigDisplay.children[0]), parseFloat(bigDisplay.children[2]))
+    //     console.log(tempDisplay.innerText);
+    // }
 }
 // function displayNumber() {
 
@@ -102,6 +115,7 @@ function operation(operator, firstNum, secondNum) {
 function calculator() {
     displayOperator();
     displayNumber();
+    displayTempResult();
 }
 
 calculator();
