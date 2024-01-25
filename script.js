@@ -35,7 +35,6 @@ function displayPermResult() {
 }
 
 function displayNumber() {
-
     for (let i = 0; i < numbers.length; i++) {
         numbers[i].addEventListener('click', function (e) {
             if (!operator.innerText) {
@@ -48,6 +47,17 @@ function displayNumber() {
             }
         })
     }
+}
+
+function nonDisplayOperators() {
+    operators[0].addEventListener('click', function (e) {
+        if (e.srcElement.innerText == 'C') {
+            firstNumber.innerText = "";
+            secondNumber.innerText = "";
+            operator.innerText = "";
+            tempDisplay.innerText = "";
+        }
+    })
 }
 
 function operation(operator, firstNum, secondNum) {
@@ -68,6 +78,7 @@ function calculator() {
     displayOperator();
     displayNumber();
     displayPermResult();
+    nonDisplayOperators();
 }
 
 calculator();
