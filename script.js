@@ -1,22 +1,4 @@
-/*
--calculator should have 4 operators- add, subtract, divide, multiply
--create a function 'operate' that takes an operation (+,/,*,-), two numbers and performs the operation
--add a display to the calculator
--create functions that populate the display when you click number buttons
--store the the 'display value' in a variable
--users should be able to string operations together and operations should work in proper order
--calculator should evaluate more than a single pair of numbers at a time.
--round answers with long decimals
--pressing clear should acutally reset the data
--display error messages of users try to divide by 0
-
-Extra credit
--add a '.' button so users caninput decimals
--users should not type more than one decimal
--add a backspace button so users can undo 
--add keyboard support in case you get trouble from keys such as '/'. read documentation for 'event.preventDefault' tosolve this problem.
-*/
-
+'use strict'
 const buttons = document.querySelectorAll('#buttons');
 const numbers = document.querySelectorAll('#numbers');
 const operators = document.querySelectorAll('#operators');
@@ -25,17 +7,31 @@ const firstNumber = document.querySelector('#first-number');
 const secondNumber = document.querySelector('#second-number');
 const operator = document.querySelector('#operator');
 let tempDisplay = document.querySelector('#temp-display');
+const answer = document.querySelector('#answer');
+
+//I could dynamically create a span element every time a button is clicked.
+//That way, I could get the program to chain as many operations as possible
 
 function displayOperator() {
-
-    for (let i = 0; i < operators.length; i++) {
-        operators[i].addEventListener('click', function (e) {
-            if (firstNumber.innerText != "") {
+    operators[0].addEventListener('click', function (e) {
+        if (firstNumber.innerText != "") {
+            if (e.srcElement.innerText != '=') {
                 operator.innerText = "";
                 operator.innerText = e.srcElement.innerText;
             }
-        })
-    }
+        }
+    })
+}
+
+function displayPermResult() {
+    answer.addEventListener('click', function () {
+        if (secondNumber.innerText) {
+            firstNumber.innerText = tempDisplay.innerText;
+            operator.innerText = "";
+            secondNumber.innerText = "";
+            tempDisplay.innerText = "";
+        }
+    })
 }
 
 function displayNumber() {
@@ -46,7 +42,9 @@ function displayNumber() {
                 firstNumber.innerText += e.srcElement.innerText;
             } else {
                 secondNumber.innerText += e.srcElement.innerText;
-                tempDisplay.innerText = operation(operator.innerText, parseInt(firstNumber.innerText), parseInt(secondNumber.innerText));
+                if (operator.innerText == '+' || operator.innerText == '-' || operator.innerText == 'X' || operator.innerText == '/') {
+                    tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
+                }
             }
         })
     }
@@ -56,7 +54,7 @@ function operation(operator, firstNum, secondNum) {
     let result = 0;
     if (operator == '+') {
         result = firstNum + secondNum;
-    } else if (operator == '*') {
+    } else if (operator == 'X') {
         result = firstNum * secondNum;
     } else if (operator == '/') {
         result = firstNum / secondNum;
@@ -69,9 +67,7 @@ function operation(operator, firstNum, secondNum) {
 function calculator() {
     displayOperator();
     displayNumber();
-    operation(firstNumber, secondNumber);
+    displayPermResult();
 }
 
 calculator();
-// console.log(displayOperator());
-// console.log(displayNumber());
