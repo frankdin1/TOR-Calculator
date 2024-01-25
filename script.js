@@ -13,54 +13,24 @@ const answer = document.querySelector('#answer');
 //That way, I could get the program to chain as many operations as possible
 
 function displayOperator() {
-
-    for (let i = 0; i < operators.length; i++) {
-        operators[i].addEventListener('click', function (e) {
-            if (firstNumber.innerText != "") {
+    operators[0].addEventListener('click', function (e) {
+        if (firstNumber.innerText != "") {
+            if (e.srcElement.innerText != '=') {
                 operator.innerText = "";
                 operator.innerText = e.srcElement.innerText;
             }
-        })
-    }
+        }
+    })
 }
-
-// function displayOperator() {
-//     for (let i = 0; i < operators.length; i++) {
-//         operators[i].addEventListener('click', function (e) {
-//             if (bigDisplay.children.length > 0) {
-//                 const operator = document.createElement('span');
-//                 operator.id = 'operator';
-//                 operator.innerText = e.srcElement.innerText;
-//                 if (bigDisplay.lastChild.id != 'number') {
-//                     bigDisplay.removeChild(bigDisplay.lastChild);
-//                 }
-//                 bigDisplay.appendChild(operator);
-
-//             }
-//         })
-//     }
-// }
-
-// function displayNumber() {
-//     for (let i = 0; i < numbers.length; i++) {
-//         numbers[i].addEventListener('click', function (e) {
-//             if (operator.innerText) {
-//                 secondNumber.innerText += e.srcElement.innerText;
-//                 tempDisplay.innerText = operation(operator, parseFloat(firstNumber
-//                     .innerText), parseFloat(secondNumber.innerText));
-//             } else {
-//                 firstNumber.innerText += e.srcElement.innerText;
-//             }
-//         })
-//     }
-// }
 
 function displayPermResult() {
     answer.addEventListener('click', function () {
-        firstNumber.innerText = tempDisplay.innerText;
-        operator.innerText = "";
-        secondNumber.innerText = "";
-        console.log('answer button was clicked.')
+        if (secondNumber.innerText) {
+            firstNumber.innerText = tempDisplay.innerText;
+            operator.innerText = "";
+            secondNumber.innerText = "";
+            tempDisplay.innerText = "";
+        }
     })
 }
 
