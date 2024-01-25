@@ -21,8 +21,8 @@ const buttons = document.querySelectorAll('#buttons');
 const numbers = document.querySelectorAll('#numbers');
 const operators = document.querySelectorAll('#operators');
 const bigDisplay = document.querySelector('#perm-display');
-const firstNumber = document.querySelector('#first-number');
-const secondNumber = document.querySelector('#second-number');
+//const firstNumber = document.querySelector('#first-number');
+//const secondNumber = document.querySelector('#second-number');
 //const operator = document.querySelector('#operator');
 let tempDisplay = document.querySelector('#temp-display');
 
@@ -44,31 +44,46 @@ let tempDisplay = document.querySelector('#temp-display');
 function displayOperator() {
     for (let i = 0; i < operators.length; i++) {
         operators[i].addEventListener('click', function (e) {
-            //if (bigDisplay.firstChild) {
-            const operator = document.createElement('span');
-            operator.id = 'operator';
-            operator.innerText = e.srcElement.innerText;
-            bigDisplay.appendChild(operator);
-            //}
+            if (bigDisplay.children.length > 0) {
+                const operator = document.createElement('span');
+                operator.id = 'operator';
+                operator.innerText = e.srcElement.innerText;
+                console.log(bigDisplay.lastChild)
+                if (bigDisplay.lastChild.id != 'number') {
+                    bigDisplay.removeChild(bigDisplay.lastChild);
+                }
+                bigDisplay.appendChild(operator);
+
+            }
         })
     }
 }
 
 function displayNumber() {
-
     for (let i = 0; i < numbers.length; i++) {
         numbers[i].addEventListener('click', function (e) {
-            if (!operator.innerText) {
-                firstNumber.innerText += e.srcElement.innerText;
-            } else {
-                secondNumber.innerText += e.srcElement.innerText;
-                if (operator.innerText == '+' || operator.innerText == '-' || operator.innerText == 'X' || operator.innerText == '/') {
-                    tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
-                }
-            }
+            const number = document.createElement('span')
+            number.id = 'number';
+            number.innerText = e.srcElement.innerText;
+            bigDisplay.appendChild(number);
         })
     }
 }
+// function displayNumber() {
+
+//     for (let i = 0; i < numbers.length; i++) {
+//         numbers[i].addEventListener('click', function (e) {
+//             if (!operator.innerText) {
+//                 firstNumber.innerText += e.srcElement.innerText;
+//             } else {
+//                 secondNumber.innerText += e.srcElement.innerText;
+//                 if (operator.innerText == '+' || operator.innerText == '-' || operator.innerText == 'X' || operator.innerText == '/') {
+//                     tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
+//                 }
+//             }
+//         })
+//     }
+// }
 
 function operation(operator, firstNum, secondNum) {
     let result = 0;
