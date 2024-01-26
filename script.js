@@ -72,13 +72,23 @@ function nonDisplayOperators() {
                 decimal(secondNumber);
             }
         }
-        if (e.srcElement.innerText == '+/-') { }
+        if (e.srcElement.innerText == '+/-') {
+            if (!operator.innerText) {
+                negativeValue(firstNumber);
+            } else {
+                negativeValue(secondNumber);
+            }
+        }
     })
 }
 
-// function() {
-
-// }
+function negativeValue(node) {
+    if (!node.innerText) {
+        node.innerText = "-";
+    } else if (node.innerText && !node.innerText.split('').includes("-")) {
+        node.innerText += "-";
+    }
+}
 
 function decimal(node) {
     if (!node.innerText) {
