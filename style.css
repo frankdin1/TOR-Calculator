@@ -12,18 +12,31 @@
 
 
 #perm-display {
-    width: var(--inner-width);
-    height: 100px;
-    border: 1px solid black;
-    margin: 0 auto;
-    margin-top: 10px;
-}
-
-#temp-display {
+    display: flex;
+    align-items: center;
+    justify-content: end;
     width: var(--inner-width);
     height: 50px;
     border: 1px solid black;
     margin: 0 auto;
+    margin-top: 10px;
+    font-size: 50px;
+}
+
+#temp-display {
+    display: flex;
+    justify-content: end;
+    width: var(--inner-width);
+    height: 50px;
+    border: 1px solid black;
+    margin: 0 auto;
+    font-size: 50px;
+    align-items: center;
+}
+
+#operator {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #buttons {
