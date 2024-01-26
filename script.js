@@ -58,27 +58,21 @@ function nonDisplayOperators() {
             backspace();
         }
         if (e.srcElement.innerText == '.') {
-            decimal();
+            if (!operator.innerText) {
+                decimal(firstNumber);
+            } else {
+                decimal(secondNumber);
+            }
         }
         if (e.srcElement.innerText == '+/-') { }
     })
 }
 
-function decimal() {
-    //let node = "";
-    if (!operator.innerText) {
-        //node = firstNumber;
-        if (!firstNumber.innerText) {
-            firstNumber.innerText = "0.";
-        } else if (firstNumber.innerText && !firstNumber.innerText.split('').includes(".")) {
-            firstNumber.innerText += ".";
-        }
-    } else {
-        if (!secondNumber.innerText) {
-            secondNumber.innerText = "0.";
-        } else if (secondNumber.innerText && !secondNumber.innerText.split('').includes(".")) {
-            secondNumber.innerText += ".";
-        }
+function decimal(node) {
+    if (!node.innerText) {
+        node.innerText = "0.";
+    } else if (node.innerText && !node.innerText.split('').includes(".")) {
+        node.innerText += ".";
     }
 }
 
