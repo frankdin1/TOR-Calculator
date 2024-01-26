@@ -12,15 +12,18 @@ const answer = document.querySelector('#answer');
 //I could dynamically create a span element every time a button is clicked.
 //That way, I could get the program to chain as many operations as possible
 
+
 function displayOperator() {
-    operators[0].addEventListener('click', function (e) {
-        if (firstNumber.innerText != "") {
-            if (e.srcElement.innerText != '=' && e.srcElement.innerText != 'D' && e.srcElement.innerText != '.' && e.srcElement.innerText != '+/-') {
-                operator.innerText = "";
-                operator.innerText = e.srcElement.innerText;
+    for (let i = 0; i < operators[0].children.length; i++) {
+        operators[0].addEventListener('click', function (e) {
+            if (firstNumber.innerText != "") {
+                if (e.srcElement.innerText != '=' && e.srcElement.innerText != 'D' && e.srcElement.innerText != '.' && e.srcElement.innerText != '+/-') {
+                    operator.innerText = "";
+                    operator.innerText = e.srcElement.innerText;
+                }
             }
-        }
-    })
+        })
+    }
 }
 
 function displayPermResult() {
@@ -35,8 +38,8 @@ function displayPermResult() {
 }
 
 function displayNumber() {
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i].addEventListener('click', function (e) {
+    for (let i = 0; i < numbers[0].children.length; i++) {
+        numbers[0].children[i].addEventListener('click', function (e) {
             if (!operator.innerText) {
                 firstNumber.innerText += e.srcElement.innerText;
             } else {
@@ -51,7 +54,7 @@ function displayNumber() {
 
 function nonDisplayOperators() {
     operators[0].addEventListener('click', function (e) {
-        if (e.srcElement.innerText == 'C') {
+        if (e.srcElement.innerText == 'AC') {
             clearScreen();
         }
         if (e.srcElement.innerText == 'D') {
