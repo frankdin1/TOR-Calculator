@@ -55,7 +55,15 @@ function nonDisplayOperators() {
             clearScreen();
         }
         if (e.srcElement.innerText == 'D') {
-            backspace();
+            if (secondNumber.innerText) {
+                backspace(secondNumber);
+                deleteTempDisplay(secondNumber);
+            }
+            else if (!secondNumber.innerText && operator.innerText) {
+                backspace(operator);
+            } else if (firstNumber.innerText) {
+                backspace(firstNumber);
+            }
         }
         if (e.srcElement.innerText == '.') {
             if (!operator.innerText) {
@@ -67,6 +75,10 @@ function nonDisplayOperators() {
         if (e.srcElement.innerText == '+/-') { }
     })
 }
+
+// function() {
+
+// }
 
 function decimal(node) {
     if (!node.innerText) {
@@ -83,24 +95,36 @@ function clearScreen() {
     tempDisplay.innerText = "";
 }
 
-function backspace() {
-    let textLength = bigDisplay.lastElementChild.innerText.length;
-    if (bigDisplay.lastElementChild.innerText) {
-        bigDisplay.lastElementChild.innerText = bigDisplay.lastElementChild.innerText.slice(0, textLength - 1);
-        if (bigDisplay.lastElementChild.innerText == "") {
-            tempDisplay.innerText = "";
-        } else {
-            tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
-        }
-    }
-    else if (bigDisplay.firstElementChild.innerText && operator.innerText) {
-        operator.innerText = "";
-    }
-    else {
-        textLength = bigDisplay.firstElementChild.innerText.length;
-        bigDisplay.firstElementChild.innerText = bigDisplay.firstElementChild.innerText.slice(0, textLength - 1);;
+function backspace(node) {
+    let textLength = node.innerText.length;
+    node.innerText = node.innerText.slice(0, textLength - 1);
+}
+
+function deleteTempDisplay(node) {
+    if (node.innerText == "") {
+        tempDisplay.innerText = "";
+    } else {
+        tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
     }
 }
+// function backspace() {
+//     let textLength = bigDisplay.lastElementChild.innerText.length;
+//     if (bigDisplay.lastElementChild.innerText) {
+//         bigDisplay.lastElementChild.innerText = bigDisplay.lastElementChild.innerText.slice(0, textLength - 1);
+//         if (bigDisplay.lastElementChild.innerText == "") {
+//             tempDisplay.innerText = "";
+//         } else {
+//             tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
+//         }
+//     }
+//     else if (bigDisplay.firstElementChild.innerText && operator.innerText) {
+//         operator.innerText = "";
+//     }
+//     else {
+//         textLength = bigDisplay.firstElementChild.innerText.length;
+//         bigDisplay.firstElementChild.innerText = bigDisplay.firstElementChild.innerText.slice(0, textLength - 1);;
+//     }
+// }
 
 function operation(operator, firstNum, secondNum) {
     let result = 0;
