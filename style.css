@@ -1,10 +1,10 @@
 :root {
-    --inner-width: 96%;
+    --inner-width: 90%;
 }
 
 #calc-body {
-    width: 400px;
-    height: 500px;
+    width: 350px;
+    height: 420px;
     border: 2px black solid;
     margin: 0 auto;
 }
@@ -42,8 +42,8 @@
 #buttons {
     display: flex;
     width: var(--inner-width);
-    height: 320px;
-    border: 1px solid black;
+    height: 280px;
+    /*border: 1px solid black;*/
     margin: 0 auto;
     margin-top: 10px;
     justify-content: space-around;
@@ -53,22 +53,24 @@
 #operators {
     display: flex;
     flex-wrap: wrap;
-    height: 320px;
-    border: 1px solid black;
+    justify-content: space-around;
+    height: 280px;
+    /*border: 1px solid black;*/
 }
 
-#numbers #zero {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto;
-    justify-content: center;
+#numbers {
+    width: 300px;
+}
+
+#operators {
+    width: 300px;
 }
 
 .num-buttons,
 .op-buttons {
-    width: 60px;
+    width: 50px;
     height: 50px;
-    margin: 5px;
+    margin: 1px;
     border: 1px solid black;
     border-radius: 25%;
     font-size: 20px;
@@ -76,4 +78,9 @@
     font-style: italic;
     color: #608a9f;
     background-color: black;
+}
+
+.op-buttons {
+    width: 70px;
+    border-radius: 20%;
 }
