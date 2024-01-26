@@ -15,7 +15,7 @@ const answer = document.querySelector('#answer');
 function displayOperator() {
     operators[0].addEventListener('click', function (e) {
         if (firstNumber.innerText != "") {
-            if (e.srcElement.innerText != '=' && e.srcElement.innerText != 'D') {
+            if (e.srcElement.innerText != '=' && e.srcElement.innerText != 'D' && e.srcElement.innerText != '.' && e.srcElement.innerText != '+/-') {
                 operator.innerText = "";
                 operator.innerText = e.srcElement.innerText;
             }
@@ -57,7 +57,20 @@ function nonDisplayOperators() {
         if (e.srcElement.innerText == 'D') {
             backspace();
         }
+        if (e.srcElement.innerText == '.') {
+            decimal();
+            console.log(".")
+        }
+        if (e.srcElement.innerText == '+/-') { }
     })
+}
+
+function decimal() {
+    if (!firstNumber.innerText) {
+        firstNumber.innerText = "0.";
+    } else if (firstNumber.innerText && !firstNumber.innerText.split('').includes(".")) {
+        firstNumber.innerText += ".";
+    }
 }
 
 function clearScreen() {
@@ -76,7 +89,6 @@ function backspace() {
         } else {
             tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
         }
-
     }
     else if (bigDisplay.firstElementChild.innerText && operator.innerText) {
         operator.innerText = "";
@@ -85,7 +97,6 @@ function backspace() {
         textLength = bigDisplay.firstElementChild.innerText.length;
         bigDisplay.firstElementChild.innerText = bigDisplay.firstElementChild.innerText.slice(0, textLength - 1);;
     }
-
 }
 
 function operation(operator, firstNum, secondNum) {
