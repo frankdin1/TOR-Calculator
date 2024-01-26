@@ -68,14 +68,22 @@ function clearScreen() {
 }
 
 function backspace() {
+    let textLength = bigDisplay.lastElementChild.innerText.length;
     if (bigDisplay.lastElementChild.innerText) {
-        bigDisplay.lastElementChild.innerText = "";
+        bigDisplay.lastElementChild.innerText = bigDisplay.lastElementChild.innerText.slice(0, textLength - 1);
+        if (bigDisplay.lastElementChild.innerText == "") {
+            tempDisplay.innerText = "";
+        } else {
+            tempDisplay.innerText = operation(operator.innerText, parseFloat(firstNumber.innerText), parseFloat(secondNumber.innerText));
+        }
+
     }
     else if (bigDisplay.firstElementChild.innerText && operator.innerText) {
         operator.innerText = "";
     }
     else {
-        bigDisplay.firstElementChild.innerText = "";
+        textLength = bigDisplay.firstElementChild.innerText.length;
+        bigDisplay.firstElementChild.innerText = bigDisplay.firstElementChild.innerText.slice(0, textLength - 1);;
     }
 
 }
