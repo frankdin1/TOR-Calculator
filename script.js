@@ -59,17 +59,26 @@ function nonDisplayOperators() {
         }
         if (e.srcElement.innerText == '.') {
             decimal();
-            console.log(".")
         }
         if (e.srcElement.innerText == '+/-') { }
     })
 }
 
 function decimal() {
-    if (!firstNumber.innerText) {
-        firstNumber.innerText = "0.";
-    } else if (firstNumber.innerText && !firstNumber.innerText.split('').includes(".")) {
-        firstNumber.innerText += ".";
+    //let node = "";
+    if (!operator.innerText) {
+        //node = firstNumber;
+        if (!firstNumber.innerText) {
+            firstNumber.innerText = "0.";
+        } else if (firstNumber.innerText && !firstNumber.innerText.split('').includes(".")) {
+            firstNumber.innerText += ".";
+        }
+    } else {
+        if (!secondNumber.innerText) {
+            secondNumber.innerText = "0.";
+        } else if (secondNumber.innerText && !secondNumber.innerText.split('').includes(".")) {
+            secondNumber.innerText += ".";
+        }
     }
 }
 
